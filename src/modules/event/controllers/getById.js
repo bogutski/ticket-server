@@ -1,12 +1,12 @@
-const Album = require('../Model');
+const Event = require('../Model');
 const message = require('../../utils/messages');
 const { get } = require('lodash');
 
-const albumGetById = (req, res) => {
-  const albumId = get(req, 'params.albumId');
+const eventGetById = (req, res) => {
+  const eventId = get(req, 'params.eventId');
   const userId = get(req, 'userData.userId');
 
-  Album.findById(albumId)
+  Event.findById(eventId)
     // подтягивает данные из соседних коллекций, аналог SQL JOIN
     // .populate({
     //   path: 'members',
@@ -20,15 +20,15 @@ const albumGetById = (req, res) => {
     .exec()
     .then((doc) => {
       if (doc) {
-        res.status(200).json(message.success('Get Album by id ok', doc));
+        res.status(200).json(message.success('Get Event by id ok', doc));
       } else {
-        res.status(404).json(message.fail('No album for provided id'));
+        res.status(404).json(message.fail('No event for provided id'));
       }
     })
     .catch((error) => {
       console.log(error);
-      res.status(400).json(message.fail('Album get error'));
+      res.status(400).json(message.fail('Event get error'));
     });
 };
 
-module.exports = albumGetById;
+module.exports = eventGetById;

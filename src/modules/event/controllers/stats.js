@@ -1,11 +1,11 @@
-const Album = require('../Model');
+const Event = require('../Model');
 const message = require('../../utils/messages');
 const { get } = require('lodash');
 
-const albumStats = async (req, res) => {
+const eventStats = async (req, res) => {
   const userId = get(req, 'userData.userId');
   try {
-    const totalCount = await Album.countDocuments();
+    const totalCount = await Event.countDocuments();
 
     const result = {
       totalCount,
@@ -14,12 +14,12 @@ const albumStats = async (req, res) => {
       totalCountTen: totalCount * 10,
     };
 
-    res.status(200).json(message.success('Album Stats ok', result));
+    res.status(200).json(message.success('Event Stats ok', result));
   } catch (error) {
 console.log(error)
 
-    res.status(400).json(message.fail('Album Stats error'));
+    res.status(400).json(message.fail('Event Stats error'));
   }
 };
 
-module.exports = albumStats;
+module.exports = eventStats;

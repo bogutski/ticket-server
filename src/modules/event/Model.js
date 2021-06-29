@@ -15,22 +15,9 @@ const Schema = mongoose.Schema(
     },
 
     images: [{ type: String }],
-
-    owner: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-    },
-
-    // tags: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Tags',
-    //     required: false,
-    //   },
-    // ],
   },
+
   { timestamps: {}, versionKey: false },
 );
 
-module.exports = mongoose.model('Album', Schema);
+module.exports = mongoose.model('Event', Schema);

@@ -1,27 +1,27 @@
-const Album = require('../Model');
+const Event = require('../Model');
 const message = require('../../utils/messages');
 const { get } = require('lodash');
 
-const albumDeleteById = (req, res) => {
+const eventDeleteById = (req, res) => {
   // читаем id из параметров URL запроса
-  const _id = get(req, 'params.albumId');
+  const _id = get(req, 'params.eventId');
 
   // Получаем id текущего пользователя
   const userId = get(req, 'userData.userId');
 
-  Album.deleteOne({ _id })
+  Event.deleteOne({ _id })
     .exec()
     .then((doc) => {
       if (doc.n) {
-        res.status(200).json(message.success('Album deleted'));
+        res.status(200).json(message.success('Event deleted'));
       } else {
-        res.status(400).json(message.fail('Album not found'));
+        res.status(400).json(message.fail('Event not found'));
       }
     })
     .catch((error) => {
       console.log(error);
-      res.status(400).json(message.fail('Album delete error'));
+      res.status(400).json(message.fail('Event delete error'));
     });
 };
 
-module.exports = albumDeleteById;
+module.exports = eventDeleteById;
