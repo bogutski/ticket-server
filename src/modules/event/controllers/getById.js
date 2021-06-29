@@ -4,19 +4,8 @@ const { get } = require('lodash');
 
 const eventGetById = (req, res) => {
   const eventId = get(req, 'params.eventId');
-  const userId = get(req, 'userData.userId');
 
   Event.findById(eventId)
-    // подтягивает данные из соседних коллекций, аналог SQL JOIN
-    // .populate({
-    //   path: 'members',
-    //   select: 'name links',
-    // })
-    // .populate({
-    //   path: 'lectures',
-    //   options: { sort: { date: -1 } },
-    //   populate: { path: 'understood', select: 'name' },
-    // })
     .exec()
     .then((doc) => {
       if (doc) {

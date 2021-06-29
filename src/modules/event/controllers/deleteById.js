@@ -3,11 +3,7 @@ const message = require('../../utils/messages');
 const { get } = require('lodash');
 
 const eventDeleteById = (req, res) => {
-  // читаем id из параметров URL запроса
   const _id = get(req, 'params.eventId');
-
-  // Получаем id текущего пользователя
-  const userId = get(req, 'userData.userId');
 
   Event.deleteOne({ _id })
     .exec()

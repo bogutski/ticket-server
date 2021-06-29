@@ -4,7 +4,6 @@ const { get } = require('lodash');
 
 async function eventUpdateById(req, res) {
   const eventId = get(req, 'params.eventId');
-  const userId = get(req, 'userData.userId');
 
   Event.updateOne({ _id: eventId }, { $set: req.body }, { runValidators: true })
     .exec()
@@ -17,7 +16,6 @@ async function eventUpdateById(req, res) {
     })
     .catch((error) => {
       console.log(error);
-
       res.status(400).json(message.fail('Event update error'));
     });
 }
