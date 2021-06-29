@@ -1,6 +1,6 @@
-const message = require('../../utils/messages');
+const message = require('../utils/messages');
 const faker = require('faker');
-const Base = require('../../_base/Model');
+const Base = require('../_base/Model');
 const mongoose = require('mongoose');
 const { get } = require('lodash');
 
