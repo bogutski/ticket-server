@@ -11,10 +11,13 @@ const fakeGeneratorEvent = (req, res) => {
     const eventFields = {
       _id: new mongoose.Types.ObjectId(),
       description: faker.commerce.productDescription(),
-      name: faker.commerce.productName(),
+      name: faker.name.findName(),
+      price: faker.commerce.price(),
+      image: faker.image.avatar(),
     };
 
     const event = new Event(eventFields);
+
     event
       .save()
       .then(() => {})

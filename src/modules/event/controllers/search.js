@@ -7,8 +7,6 @@ const paginationSearchFormatter = require('../../utils/paginationSearchFormatter
 // Поиск с пагинацией
 
 const eventSearch = async (req, res) => {
-  const userId = get(req, 'userData.userId');
-
   try {
     let limit = +get(req, 'body.limit', 20);
     limit = limit > 100 ? 100 : limit; // показать не больше 100
@@ -24,10 +22,6 @@ const eventSearch = async (req, res) => {
     if (name) {
       query.name = { $regex: escapeRegExp(name), $options: 'i' };
     }
-
-    // if (accessType) {
-    //   query.accessType = { $eq: accessType };
-    // }
 
     const totalCountPromise = Event.countDocuments(query); // Находим кол-во результатов
     const searchPromise = eventSearchQuery({ query, page, limit }); // Находим результат
