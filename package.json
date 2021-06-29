@@ -6,7 +6,7 @@
   "main": "index.js",
   "author": "Viktor Bogutskii",
   "scripts": {
-    "start": "node build/index.js",
+    "start": "node src/index.js",
     "local": "nodemon --inspect -r dotenv/config src/index.js",
     "lint": "eslint --ext .js ./src/modules"
   },
